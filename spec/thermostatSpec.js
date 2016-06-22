@@ -32,6 +32,12 @@ var thermostat;
       thermostat.switchPsmOff();
       expect(thermostat.isPowerSave()).toBe(false);
     });
+    it('can switch psm back on', function() {
+      thermostat.switchPsmOff();
+      expect(thermostat.isPowerSave()).toBe(false);
+      thermostat.switchPsmOn();
+      expect(thermostat.isPowerSave()).toBe(true);
+    });
   });
 
 
@@ -55,5 +61,14 @@ var thermostat;
     	}
     	expect(thermostat.getTemperature()).toEqual(32);
     });
+  });
+
+
+  it('can be reset to the default temperature', function() {
+    for (var i = 0; i < 6; i++) {
+      thermostat.incTemperature();
+    }
+    thermostat.resetTemperature();
+    expect(thermostat.getTemperature()).toEqual(20);
   });
 });
